@@ -5,15 +5,6 @@
 
 <img src="assets/logo/kriptoin.png" alt="Logo" width="120" />
 
-## 👥 Team
-
-This project was developed with the help and support of my GitHub team:
-
-- [@Nandisya Faiz Efendi](https://github.com/faiz-effendi)
-  Thank you for your collaboration and contributions!
-
----
-
 ## 🚀 Main Features
 
 - **Authentication**: Manual login & quick access via fingerprint (biometric).
