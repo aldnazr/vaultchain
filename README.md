@@ -1,4 +1,4 @@
-# FokusKripto
+# Kriptoin
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-blue?logo=flutter)](https://flutter.dev)
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios-lightgrey)](https://flutter.dev)
