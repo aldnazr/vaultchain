@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "963522338429",
+    "firebase_url": "https://android-af021-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "android-af021",
+    "storage_bucket": "android-af021.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963522338429:android:8a0145a4d66d773a6e1b14",
+        "android_client_info": {
+          "package_name": "com.android.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963522338429-i7nbnijbic3tnqrmgm3e44eeecvkkh3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7jR4VgLOaKL8Nl1KdxudtI9dWuLJDlDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963522338429-i7nbnijbic3tnqrmgm3e44eeecvkkh3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963522338429:android:1436538c9ccfb0406e1b14",
+        "android_client_info": {
+          "package_name": "com.example.fokuskripto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963522338429-i7nbnijbic3tnqrmgm3e44eeecvkkh3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7jR4VgLOaKL8Nl1KdxudtI9dWuLJDlDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963522338429-i7nbnijbic3tnqrmgm3e44eeecvkkh3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

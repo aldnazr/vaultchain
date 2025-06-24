@@ -235,7 +235,6 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 30),
                   Center(
                     child: ElevatedButton.icon(
-                      icon: const Icon(Icons.logout),
                       label: const Text("Logout"),
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
