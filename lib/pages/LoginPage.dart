@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; 
-import 'dart:convert'; 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import 'package:crypto/crypto.dart'; // Untuk sha256
 import 'package:hive_flutter/hive_flutter.dart';
 import '../main.dart';
@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset('assets/logo/kriptoin.png'),
                   ),
                   Text(
-                    "Kriptoin;",
+                    "Kriptoin",
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
