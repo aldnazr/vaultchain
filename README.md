@@ -62,7 +62,7 @@ assets/
 
    ```bash
    git clone <repo-url>
-   cd fokuskripto
+   cd kriptoin
    flutter pub get
    ```
 
