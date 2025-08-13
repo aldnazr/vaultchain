@@ -62,7 +62,7 @@ assets/
 
    ```bash
    git clone <repo-url>
-   cd kriptoin
+   cd vaultchain
    flutter pub get
    ```
 
