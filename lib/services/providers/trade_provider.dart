@@ -35,7 +35,6 @@ class TradeProvider extends ChangeNotifier {
     await _initializeTrading();
 
     _isInitialized = true;
-    print('TradeProvider: Initialization complete'); // Debug log
   }
 
   void _onMarketChanged() {
@@ -51,7 +50,6 @@ class TradeProvider extends ChangeNotifier {
 
   @override
   void dispose() {
-    print('TradeProvider: Disposing...'); 
     marketProvider.removeListener(_onMarketChanged);
     walletProvider.removeListener(_onWalletChanged);
     _isInitialized = false;
@@ -68,13 +66,11 @@ class TradeProvider extends ChangeNotifier {
 
   double get idrBalance {
     final balance = walletProvider.getBalance('IDR');
-    print('TradeProvider: Getting IDR balance: $balance');
     return balance;
   }
 
   double get cryptoBalance {
     final balance = walletProvider.getBalance(_selectedCoinSymbol);
-    print('TradeProvider: Getting $_selectedCoinSymbol balance: $balance');
     return balance;
   }
 
@@ -95,7 +91,6 @@ class TradeProvider extends ChangeNotifier {
 
   // Initialize trading
   Future<void> _initializeTrading() async {
-    print('TradeProvider: Initializing trading...'); // Debug log
     // Hanya set default jika belum ada pilihan
     if (_selectedCoinId.isEmpty && marketProvider.allCoins.isNotEmpty) {
       selectCoin(marketProvider.allCoins.first);
@@ -104,7 +99,6 @@ class TradeProvider extends ChangeNotifier {
 
   // Select coin
   void selectCoin(CoinGeckoMarketModel coin) {
-    print('TradeProvider: Selecting coin - ${coin.symbol}'); // Debug log
     _selectedCoinId = coin.id;
     _selectedCoinSymbol = coin.symbol.toUpperCase();
     notifyListeners();
@@ -112,7 +106,6 @@ class TradeProvider extends ChangeNotifier {
 
   // Switch trade mode
   void setTradeMode(TradeMode mode) {
-    print('TradeProvider: Setting trade mode - $mode'); // Debug log
     _currentMode = mode;
     notifyListeners();
   }
@@ -135,9 +128,6 @@ class TradeProvider extends ChangeNotifier {
       calculatedAmount = cryptoToSell;
       calculatedTotal = cryptoToSell * currentPrice;
     }
-
-    print(
-        'TradeProvider: Calculated trade - Amount: $calculatedAmount, Total: $calculatedTotal'); // Debug log
     return {
       'amount': calculatedAmount,
       'total': calculatedTotal,
@@ -146,7 +136,6 @@ class TradeProvider extends ChangeNotifier {
 
   // Execute trade
   Future<void> executeTrade(double amount) async {
-    print('TradeProvider: Executing trade - Amount: $amount'); // Debug log
     _setLoading(true);
     try {
       if (amount <= 0 || currentPrice <= 0) {
@@ -189,10 +178,6 @@ class TradeProvider extends ChangeNotifier {
   void _onWalletChanged() {
     final idr = walletProvider.getBalance('IDR');
     final crypto = walletProvider.getBalance(_selectedCoinSymbol);
-    print('TradeProvider: Wallet changed');
-    print('TradeProvider: Current IDR: $idr');
-    print('TradeProvider: Current ${_selectedCoinSymbol}: $crypto');
     notifyListeners();
-    print('TradeProvider: Notified listeners after wallet change');
   }
 }

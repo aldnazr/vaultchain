@@ -1,5 +1,5 @@
-name: fokuskripto
-description: "A new Flutter project."
+name: vaultchain
+description: "Cypto currency wallet application for Android, built with Flutter. It supports multiple cryptocurrencies, features a user-friendly interface, and integrates with various APIs for real-time data."
 publish_to: "none"
 version: 0.1.0
 
@@ -41,7 +41,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/logo/kriptoin.png
+    - assets/logo/app_logo.png
     - assets/logo/rupiah.png
   fonts:
     - family: SFPRODISPLAY
@@ -56,13 +56,13 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/logo/kriptoin.png"
+  image_path: "assets/logo/app_logo.png"
   min_sdk_android: 21
   remove_alpha_ios: true
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/logo/kriptoin.png"
+  adaptive_icon_foreground: "assets/logo/app_logo.png"
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: "assets/logo/kriptoin.png"
+  image: "assets/logo/app_logo.png"
   android: true

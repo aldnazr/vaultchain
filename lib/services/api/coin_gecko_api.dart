@@ -1,9 +1,9 @@
-import 'package:fokuskripto/services/api/api_exception.dart';
-import 'package:fokuskripto/services/api/endpoints.dart';
-import 'package:fokuskripto/services/api/base_network.dart';
-import 'package:fokuskripto/services/cache/cache_manager.dart ';
-import 'package:fokuskripto/model/coinGecko.dart';
-import 'package:fokuskripto/model/coinGecko_detail.dart';
+import '../../model/coinGecko.dart';
+import '../../model/coinGecko_detail.dart';
+import '../cache/cache_manager.dart';
+import 'api_exception.dart';
+import 'base_network.dart';
+import 'endpoints.dart';
 
 class CoinGeckoApi {
   static const String _apiKey = 'CG-fG8KAiNzkZtwkafsmTVTjnXT';

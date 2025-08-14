@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/logo/kriptoin.png',
+              'assets/logo/app_logo.png',
               width: 200,
               height: 200,
             ),

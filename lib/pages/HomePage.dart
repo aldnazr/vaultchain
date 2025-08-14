@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fokuskripto/pages/Profile_Page.dart';
 import 'DashboardTab.dart';
+import 'HistoryPage.dart';
 import 'MarketTab.dart';
+import 'Profile_page.dart';
 import 'WalletTab.dart';
 import 'TradeTab.dart';
-import 'package:fokuskripto/pages/history_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../../services/providers/coin_detail_provider.dart';
 
 class CoinChartWidget extends StatelessWidget {
-  const CoinChartWidget({Key? key}) : super(key: key);
+  const CoinChartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

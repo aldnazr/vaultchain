@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:fokuskripto/services/providers/notification_service.dart';
-import 'package:fokuskripto/services/providers/market_provider.dart';
-import 'package:fokuskripto/services/providers/trade_provider.dart';
-import 'package:fokuskripto/services/providers/wallet_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'model/coinGecko.dart';
@@ -14,8 +10,12 @@ import 'pages/HomePage.dart';
 import 'pages/SplashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/FingerprintPage.dart';
-import 'package:fokuskripto/services/providers/news_provider.dart';
+import 'services/providers/market_provider.dart';
+import 'services/providers/news_provider.dart';
+import 'services/providers/notification_service.dart';
 import 'services/providers/profile_provider.dart';
+import 'services/providers/trade_provider.dart';
+import 'services/providers/wallet_provider.dart';
 
 final ValueNotifier<Key> appKeyNotifier = ValueNotifier(Key('initial'));
 
@@ -45,7 +45,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -190,14 +190,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                   Color.fromARGB(255, 112, 190, 145)),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              elevation: MaterialStateProperty.all<double>(2),
-              padding: MaterialStateProperty.all<EdgeInsets>(
+              foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+              elevation: WidgetStateProperty.all<double>(2),
+              padding: WidgetStateProperty.all<EdgeInsets>(
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
               ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),

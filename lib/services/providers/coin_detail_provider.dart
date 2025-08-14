@@ -12,7 +12,7 @@ class CoinDetailProvider extends ChangeNotifier {
   bool isLoading = false;
   String? error;
   DateTime? _lastUpdated;
-  static const int _refreshIntervalSeconds = 60*5; 
+  static const int _refreshIntervalSeconds = 60 * 5;
 
   CoinDetailProvider({required this.coinId}) {
     print('CoinDetailProvider created for $coinId');
@@ -42,9 +42,6 @@ class CoinDetailProvider extends ChangeNotifier {
     if (!force && _lastUpdated != null) {
       final timeSinceLastUpdate = DateTime.now().difference(_lastUpdated!);
       if (timeSinceLastUpdate.inSeconds < _refreshIntervalSeconds) {
-        print(
-          'Data masih fresh, tidak fetch ulang',
-        );
         return;
       }
     }

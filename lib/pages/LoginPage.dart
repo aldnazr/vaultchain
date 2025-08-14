@@ -172,10 +172,10 @@ class _LoginPageState extends State<LoginPage> {
                   CircleAvatar(
                     radius: 80,
                     backgroundColor: const Color.fromARGB(255, 59, 58, 58),
-                    child: Image.asset('assets/logo/kriptoin.png'),
+                    child: Image.asset('assets/logo/app_logo.png'),
                   ),
                   Text(
-                    "Kriptoin",
+                    "Vault Chain",
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,

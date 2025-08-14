@@ -29,7 +29,6 @@ class WalletProvider extends ChangeNotifier {
   // Get balance for any asset (IDR or crypto)
   double getBalance(String symbol) {
     final balance = _balances[symbol.toUpperCase()] ?? 0.0;
-    print('WalletProvider: Getting balance for $symbol: $balance'); // Debug log
     return balance;
   }
 
@@ -56,13 +55,11 @@ class WalletProvider extends ChangeNotifier {
 
   // Refresh wallet data
   Future<void> refresh() async {
-    print('WalletProvider: Starting refresh'); // Debug
     await loadAllBalances();
   }
 
   // Load all balances
   Future<void> loadAllBalances() async {
-    print('WalletProvider: Starting loadAllBalances'); // Debug
     if (!_walletBox.isOpen) return;
 
     try {
@@ -83,8 +80,6 @@ class WalletProvider extends ChangeNotifier {
         }
       }
 
-      print('WalletProvider: Loaded balances - $_balances'); // Debug
-
       // Check if balances actually changed
       bool balancesChanged = false;
       _balances.forEach((key, value) {
@@ -94,12 +89,9 @@ class WalletProvider extends ChangeNotifier {
       });
 
       if (balancesChanged) {
-        print(
-            'WalletProvider: Balances changed after loading, notifying listeners'); // Debug
         notifyListeners();
       }
     } catch (e) {
-      print('WalletProvider: Error in loadAllBalances - $e'); // Debug
       _error = 'Failed to load balances: $e';
       notifyListeners();
     }
@@ -107,21 +99,15 @@ class WalletProvider extends ChangeNotifier {
 
   // Deposit IDR
   Future<void> depositIDR(double amount) async {
-    print('WalletProvider: Starting deposit of $amount IDR'); // Debug log
     if (amount <= 0) {
       throw Exception('Deposit amount must be positive');
     }
 
     try {
       final currentBalance = getBalance('IDR');
-      print(
-          'WalletProvider: Current balance before deposit: $currentBalance'); // Debug log
       await updateBalance('IDR', currentBalance + amount);
       final newBalance = getBalance('IDR');
-      print(
-          'WalletProvider: New balance after deposit: $newBalance'); // Debug log
       notifyListeners();
-      print('WalletProvider: Notified listeners after deposit'); // Debug log
     } catch (e) {
       _error = 'Failed to deposit: $e';
       notifyListeners();
@@ -142,8 +128,6 @@ class WalletProvider extends ChangeNotifier {
 
     try {
       await updateBalance('IDR', currentBalance - amount);
-      print(
-          'WalletProvider: IDR Withdrawn - Amount: $amount, New Balance: ${getBalance('IDR')}'); // Debug log
     } catch (e) {
       _error = 'Failed to withdraw: $e';
       notifyListeners();
@@ -154,8 +138,6 @@ class WalletProvider extends ChangeNotifier {
   // Update balance for an asset
   Future<void> updateBalance(String symbol, double newAmount,
       {CoinGeckoMarketModel? coinData, double? priceInIdr}) async {
-    print(
-        'WalletProvider: Starting updateBalance - Symbol: $symbol, Amount: $newAmount'); // Debug
     if (!_walletBox.isOpen) {
       throw Exception('Wallet is not initialized');
     }
@@ -168,7 +150,6 @@ class WalletProvider extends ChangeNotifier {
 
       // Get old balance for comparison
       final oldBalance = getBalance(symbol);
-      print('WalletProvider: Old balance for $symbol: $oldBalance'); // Debug
 
       Map<String, dynamic> assetData;
       if (symbol == 'IDR') {
@@ -205,15 +186,12 @@ class WalletProvider extends ChangeNotifier {
 
       // Get new balance to verify update
       final verifyBalance = getBalance(symbol);
-      print('WalletProvider: New balance for $symbol: $verifyBalance'); // Debug
 
       // Only notify if balance actually changed
       if (oldBalance != verifyBalance) {
-        print('WalletProvider: Balance changed, notifying listeners'); // Debug
         notifyListeners();
       }
     } catch (e) {
-      print('WalletProvider: Error in updateBalance - $e'); // Debug
       _error = e.toString();
       notifyListeners();
       rethrow;
@@ -271,9 +249,6 @@ class WalletProvider extends ChangeNotifier {
         'date': DateTime.now().toIso8601String(),
         'note': '',
       });
-
-      print(
-          'WalletProvider: Trade Executed - Type: ${isBuy ? 'BUY' : 'SELL'}, Crypto: $cryptoSymbol, Amount: $cryptoAmount, IDR: $idrAmount'); // Debug log
       notifyListeners(); // Notify after trade completion
     } catch (e) {
       _error = e.toString();
@@ -290,14 +265,5 @@ class WalletProvider extends ChangeNotifier {
   void clearError() {
     _error = null;
     notifyListeners();
-  }
-
-  // Debug method to print current state
-  void debugPrintState() {
-    print('WalletProvider Debug State:');
-    print('Username: $_username');
-    print('Balances: $_balances');
-    print('Is Loading: $_isLoading');
-    print('Error: $_error');
   }
 }

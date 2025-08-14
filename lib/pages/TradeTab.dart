@@ -52,7 +52,6 @@ class _TradeTabState extends State<TradeTab> {
   Future<void> _refreshData() async {
     final walletProvider = context.read<WalletProvider>();
     await walletProvider.refresh();
-    walletProvider.debugPrintState();
   }
 
   Widget _buildTradeContent(

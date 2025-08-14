@@ -129,23 +129,19 @@ class MarketProvider extends ChangeNotifier {
   bool get isAscendingSort => _isAscending;
 
   Future<CoinGeckoMarketModel?> refreshCoinById(String id) async {
-    try {
-      final coins = await _api.getMarkets(
-        vsCurrency: 'idr',
-        ids: id,
-        forceRefresh: true,
-      );
+    final coins = await _api.getMarkets(
+      vsCurrency: 'idr',
+      ids: id,
+      forceRefresh: true,
+    );
 
-      if (coins.isNotEmpty) {
-        final index = _allCoins.indexWhere((coin) => coin.id == id);
-        if (index != -1) {
-          _allCoins[index] = coins.first;
-          notifyListeners();
-        }
-        return coins.first;
+    if (coins.isNotEmpty) {
+      final index = _allCoins.indexWhere((coin) => coin.id == id);
+      if (index != -1) {
+        _allCoins[index] = coins.first;
+        notifyListeners();
       }
-    } catch (e) {
-      print('Error refreshing coin $id: $e');
+      return coins.first;
     }
     return null;
   }
