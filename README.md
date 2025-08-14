@@ -22,9 +22,9 @@
 
 ## 🖼️ Screenshots
 
-|      Login & Fingerprint       |              Market              |              Wallet              |
-| :----------------------------: | :------------------------------: | :------------------------------: |
-| ![Login](screenshot/login.jpg) | ![Market](screenshot/market.jpg) | ![Wallet](screenshot/wallet.jpg) |
+|      Login & Fingerprint       |              Dashboard              |              Trade              |
+| :----------------------------: | :---------------------------------: | :-----------------------------: |
+| ![Login](screenshot/login.jpg) | ![Market](screenshot/dashboard.jpg) | ![Wallet](screenshot/trade.jpg) |
 
 ---
 
