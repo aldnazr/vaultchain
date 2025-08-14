@@ -24,7 +24,7 @@
 
 |      Login & Fingerprint       |              Dashboard              |              Trade              |
 | :----------------------------: | :---------------------------------: | :-----------------------------: |
-| ![Login](screenshot/login.jpg) | ![Market](screenshot/dashboard.jpg) | ![Wallet](screenshot/trade.jpg) |
+| ![Login](screenshot/login.png) | ![Market](screenshot/dashboard.png) | ![Wallet](screenshot/trade.png) |
 
 ---
 
