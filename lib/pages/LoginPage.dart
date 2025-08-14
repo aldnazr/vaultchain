@@ -174,6 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: const Color.fromARGB(255, 59, 58, 58),
                     child: Image.asset('assets/logo/app_logo.png'),
                   ),
+                  SizedBox(height: 15),
                   Text(
                     "Vault Chain",
                     style: TextStyle(
