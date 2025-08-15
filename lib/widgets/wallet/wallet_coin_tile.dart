@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../model/coinGecko.dart';
+import '../../model/coin_gecko.dart';
 
 class WalletCoinTile extends StatelessWidget {
   final dynamic asset;

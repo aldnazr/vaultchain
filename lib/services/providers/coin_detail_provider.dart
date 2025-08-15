@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../model/coinGecko_detail.dart';
+import '../../model/coin_gecko_detail_model.dart';
 import '../api/coin_gecko_api.dart';
 import 'package:fl_chart/fl_chart.dart';
 

@@ -2,9 +2,9 @@ class CoinGeckoDetailModel {
   final String id;
   final String symbol;
   final String name;
-  final String? imageLarge; 
-  final String? descriptionEn; 
-  final String? homepageUrl; 
+  final String? imageLarge;
+  final String? descriptionEn;
+  final String? homepageUrl;
 
   final double currentPriceIdr;
   final double? high24hIdr;
@@ -39,28 +39,34 @@ class CoinGeckoDetailModel {
 
     // Mengambil data dari sub-map 'market_data'
     final marketData = json['market_data'] as Map<String, dynamic>? ?? {};
-    final currentPriceMap = marketData['current_price'] as Map<String, dynamic>? ?? {};
+    final currentPriceMap =
+        marketData['current_price'] as Map<String, dynamic>? ?? {};
     final high24hMap = marketData['high_24h'] as Map<String, dynamic>? ?? {};
     final low24hMap = marketData['low_24h'] as Map<String, dynamic>? ?? {};
-    final totalVolumeMap = marketData['total_volume'] as Map<String, dynamic>? ?? {};
+    final totalVolumeMap =
+        marketData['total_volume'] as Map<String, dynamic>? ?? {};
 
     return CoinGeckoDetailModel(
       id: json['id'] as String? ?? 'N/A',
       symbol: json['symbol'] as String? ?? 'N/A',
       name: json['name'] as String? ?? 'N/A',
       imageLarge: (json['image'] as Map<String, dynamic>?)?['large'] as String?,
-      descriptionEn: (json['description'] as Map<String, dynamic>?)?['en'] as String?,
-      homepageUrl: (json['links'] as Map<String, dynamic>?)?['homepage'] is List && 
-                   (json['links']['homepage'] as List).isNotEmpty 
-                   ? (json['links']['homepage'] as List)[0] as String?
-                   : null,
+      descriptionEn:
+          (json['description'] as Map<String, dynamic>?)?['en'] as String?,
+      homepageUrl:
+          (json['links'] as Map<String, dynamic>?)?['homepage'] is List &&
+                  (json['links']['homepage'] as List).isNotEmpty
+              ? (json['links']['homepage'] as List)[0] as String?
+              : null,
 
       currentPriceIdr: _parseDouble(currentPriceMap['idr']) ?? 0.0,
       high24hIdr: _parseDouble(high24hMap['idr']),
       low24hIdr: _parseDouble(low24hMap['idr']),
       totalVolumeIdr: _parseDouble(totalVolumeMap['idr']),
-      totalVolumeBtc: _parseDouble(totalVolumeMap['btc']), // Atau apa pun koinnya
-      priceChangePercentage24h: _parseDouble(marketData['price_change_percentage_24h']),
+      totalVolumeBtc:
+          _parseDouble(totalVolumeMap['btc']), // Atau apa pun koinnya
+      priceChangePercentage24h:
+          _parseDouble(marketData['price_change_percentage_24h']),
     );
   }
 

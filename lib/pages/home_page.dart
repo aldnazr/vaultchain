@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'DashboardTab.dart';
-import 'HistoryPage.dart';
-import 'MarketTab.dart';
-import 'Profile_page.dart';
-import 'WalletTab.dart';
-import 'TradeTab.dart';
+import 'dashboard_tab.dart';
+import 'history_page.dart';
+import 'market_tab.dart';
+import 'profile_page.dart';
+import 'wallet_tab.dart';
+import 'trade_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

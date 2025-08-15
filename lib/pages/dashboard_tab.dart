@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../services/providers/market_provider.dart';
-import '../model/coinGecko.dart';
-import '../widgets/dashboardtab/coin_list_item.dart';
-import '../widgets/dashboardtab/top_coin.dart';
+import '../model/coin_gecko.dart';
+import '../widgets/dashboard/coin_list_item.dart';
+import '../widgets/dashboard/top_coin.dart';
 import '../services/providers/news_provider.dart';
-import '../model/news_article.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../widgets/dashboardtab/news_list_item.dart';
+import '../widgets/dashboard/news_list_item.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});

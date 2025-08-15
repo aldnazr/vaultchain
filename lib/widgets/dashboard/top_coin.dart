@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../model/coinGecko.dart';
-import '../../pages/CoinDetail.dart';
+import '../../model/coin_gecko.dart';
+import '../../pages/coin_detail_page.dart';
 
 class TopCoin extends StatelessWidget {
   final CoinGeckoMarketModel coin;

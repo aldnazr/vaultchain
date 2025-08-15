@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart'; // Untuk sha256
 import 'package:hive_flutter/hive_flutter.dart';
 import '../main.dart';
-import './HomePage.dart';
+import 'home_page.dart';
 import 'package:local_auth/local_auth.dart';
 import '../services/providers/profile_provider.dart';
 import 'package:provider/provider.dart';

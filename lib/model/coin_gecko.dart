@@ -1,9 +1,10 @@
 import 'package:hive/hive.dart';
 
-part 'coinGecko.g.dart'; 
+part 'coin_gecko_market_model.dart';
 
 @HiveType(typeId: 0) // typeId harus unik untuk setiap HiveObject di proyek Anda
-class CoinGeckoMarketModel extends HiveObject { // Tambahkan 'extends HiveObject' (opsional tapi berguna)
+class CoinGeckoMarketModel extends HiveObject {
+  // Tambahkan 'extends HiveObject' (opsional tapi berguna)
   @HiveField(0)
   final String id;
 
@@ -68,7 +69,8 @@ class CoinGeckoMarketModel extends HiveObject { // Tambahkan 'extends HiveObject
       high24h: (json['high_24h'] as num?)?.toDouble(),
       low24h: (json['low_24h'] as num?)?.toDouble(),
       priceChange24h: (json['price_change_24h'] as num?)?.toDouble(),
-      priceChangePercentage24h: (json['price_change_percentage_24h'] as num?)?.toDouble(),
+      priceChangePercentage24h:
+          (json['price_change_percentage_24h'] as num?)?.toDouble(),
     );
   }
 

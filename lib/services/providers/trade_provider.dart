@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../model/coinGecko.dart';
+import '../../model/coin_gecko.dart';
 import 'market_provider.dart';
 import 'wallet_provider.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/coinGecko.dart';
+import '../../model/coin_gecko.dart';
 import '../../services/providers/market_provider.dart';
 import '../../services/providers/trade_provider.dart';
 
@@ -29,7 +29,8 @@ class TradeCoinDropdown extends StatelessWidget {
     );
   }
 
-  CoinGeckoMarketModel _getSelectedItem(MarketProvider marketProvider, TradeProvider tradeProvider) {
+  CoinGeckoMarketModel _getSelectedItem(
+      MarketProvider marketProvider, TradeProvider tradeProvider) {
     return marketProvider.allCoins.firstWhere(
       (coin) => coin.id == tradeProvider.selectedCoinId,
       orElse: () => marketProvider.allCoins.first,
@@ -44,10 +45,10 @@ class TradeCoinDropdown extends StatelessWidget {
     return (coin) => coin != null ? tradeProvider.selectCoin(coin) : null;
   }
 
-bool _filterFn(CoinGeckoMarketModel coin, String filter) {
-  return coin.name.toLowerCase().contains(filter.toLowerCase()) ||
-      coin.symbol.toLowerCase().contains(filter.toLowerCase());
-}
+  bool _filterFn(CoinGeckoMarketModel coin, String filter) {
+    return coin.name.toLowerCase().contains(filter.toLowerCase()) ||
+        coin.symbol.toLowerCase().contains(filter.toLowerCase());
+  }
 
   DropDownDecoratorProps get _dropdownDecoratorProps {
     return const DropDownDecoratorProps(

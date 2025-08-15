@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../../model/coinGecko.dart';
+import '../../model/coin_gecko.dart';
 import 'wallet_coin_tile.dart';
 
 class WalletCoinList extends StatelessWidget {

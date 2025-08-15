@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'coinGecko.dart';
+part of 'coin_gecko.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -71,5 +71,4 @@ class CoinGeckoMarketModelAdapter extends TypeAdapter<CoinGeckoMarketModel> {
       other is CoinGeckoMarketModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
-
 }

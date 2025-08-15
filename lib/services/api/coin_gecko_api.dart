@@ -1,5 +1,5 @@
-import '../../model/coinGecko.dart';
-import '../../model/coinGecko_detail.dart';
+import '../../model/coin_gecko.dart';
+import '../../model/coin_gecko_detail_model.dart';
 import '../cache/cache_manager.dart';
 import 'api_exception.dart';
 import 'base_network.dart';

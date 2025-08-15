@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../model/coinGecko.dart';
+import '../../model/coin_gecko.dart';
 
 class WalletProvider extends ChangeNotifier {
   late Box _walletBox;
