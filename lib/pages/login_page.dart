@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -167,123 +169,126 @@ class _LoginPageState extends State<LoginPage> {
             height: 600,
             child: Form(
               key: formKey,
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundColor: const Color.fromARGB(255, 59, 58, 58),
-                    child: Image.asset('assets/logo/app_logo.png'),
-                  ),
-                  SizedBox(height: 15),
-                  Text(
-                    "Vault Chain",
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Courrier',
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 40),
+                    CircleAvatar(
+                      radius: 80,
+                      backgroundColor: const Color.fromARGB(255, 59, 58, 58),
+                      child: Image.asset('assets/logo/app_logo.png'),
                     ),
-                  ),
-                  SizedBox(height: 24),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Silahkan isi";
-                      }
-                      return null;
-                    },
-                    controller: _username,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
-                      labelText: "Username",
-                      counterText: "",
-                    ),
-                    maxLength: 64,
-                  ),
-                  SizedBox(height: 14),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Silahkan isi";
-                      }
-                      return null;
-                    },
-                    controller: _password,
-                    obscureText: isObscure,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Password",
-                      prefixIcon: Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isObscure = !isObscure;
-                          });
-                        },
-                        icon: Icon(
-                          isObscure ? Icons.visibility : Icons.visibility_off,
-                        ),
+                    SizedBox(height: 15),
+                    Text(
+                      "Vault Chain",
+                      style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Courrier',
                       ),
                     ),
-                    maxLength: 12,
-                  ),
-                  SizedBox(height: 14),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _login,
-                      child: Text("Login", style: TextStyle(fontSize: 18)),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                    SizedBox(height: 24),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Silahkan isi";
+                        }
+                        return null;
+                      },
+                      controller: _username,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.person),
+                        labelText: "Username",
+                        counterText: "",
+                      ),
+                      maxLength: 64,
+                    ),
+                    SizedBox(height: 14),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Silahkan isi";
+                        }
+                        return null;
+                      },
+                      controller: _password,
+                      obscureText: isObscure,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Password",
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isObscure = !isObscure;
+                            });
+                          },
+                          icon: Icon(
+                            isObscure ? Icons.visibility : Icons.visibility_off,
+                          ),
                         ),
                       ),
+                      maxLength: 12,
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Center(
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Don't have an account? ",
-                          style: TextStyle(color: Colors.black, fontSize: 16),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "Signup",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                                fontSize: 16,
+                    SizedBox(height: 14),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _login,
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Text("Login", style: TextStyle(fontSize: 18)),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Center(
+                        child: RichText(
+                          text: TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "Signup",
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 16,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      '/register_page',
+                                      (route) => true,
+                                    );
+                                  },
                               ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                    context,
-                                    '/register_page',
-                                    (route) => true,
-                                  );
-                                },
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  if (_showFingerprint) ...[
-                    SizedBox(height: 14),
-                    ElevatedButton.icon(
-                      icon: Icon(Icons.fingerprint),
-                      label: Text('Quick Access dengan Fingerprint'),
-                      onPressed: _fingerprintLogin,
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 48),
+                    if (_showFingerprint) ...[
+                      SizedBox(height: 14),
+                      ElevatedButton.icon(
+                        icon: Icon(Icons.fingerprint),
+                        label: Text('Quick Access dengan Fingerprint'),
+                        onPressed: _fingerprintLogin,
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(double.infinity, 48),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 14),
-                    Text('Atau login manual di bawah'),
+                      SizedBox(height: 14),
+                      Text('Atau login manual di bawah'),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ),

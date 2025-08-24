@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'model/coin_gecko.dart';
 import 'pages/login_page.dart';
@@ -12,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/fingerprint_page.dart';
 import 'services/providers/market_provider.dart';
 import 'services/providers/news_provider.dart';
-import 'services/providers/notification_service.dart';
 import 'services/providers/profile_provider.dart';
 import 'services/providers/trade_provider.dart';
 import 'services/providers/wallet_provider.dart';
@@ -27,14 +25,11 @@ Future<void> main() async {
 
   Hive.registerAdapter(CoinGeckoMarketModelAdapter());
 
-  await Hive.initFlutter();
-  await NotificationService().init();
+  // await NotificationService().init();
 
-  await Permission.notification.isDenied.then((value) {
-    if (value) {
-      Permission.notification.request();
-    }
-  });
+  // if (await Permission.notification.isDenied) {
+  //   Permission.notification.request();
+  // }
 
   runApp(
     ValueListenableBuilder<Key>(

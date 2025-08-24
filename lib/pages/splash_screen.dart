@@ -1,9 +1,9 @@
-import 'dart:math';
+// ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -29,14 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!mounted) return;
     if (username != null) {
       if (diffSeconds >= 5) {
-        print('Navigasi ke /fingerprint_page karena timeout fingerprint');
         Navigator.pushReplacementNamed(context, '/fingerprint_page');
       } else {
-        print('Navigasi ke /home_page karena masih dalam sesi');
         Navigator.pushReplacementNamed(context, '/home_page');
       }
     } else {
-      print('Navigasi ke /login_page karena belum login');
       Navigator.pushReplacementNamed(context, '/login_page');
     }
   }
@@ -54,8 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 200,
               height: 200,
             ),
-            SizedBox(height: 8),
-            SizedBox(height: 24),
+            SizedBox(height: 32),
             CircularProgressIndicator(),
           ],
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:provider/provider.dart';
 
 import '../../model/coin_gecko.dart';
 import '../../services/providers/market_provider.dart';

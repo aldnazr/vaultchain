@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +18,7 @@ class MarketTab extends StatefulWidget {
 
 class _MarketTabState extends State<MarketTab> {
   StreamSubscription? _accelSub;
-  double _shakeThreshold = 15.0;
+  final double _shakeThreshold = 15.0;
   DateTime? _lastShakeTime;
   String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
@@ -50,12 +52,12 @@ class _MarketTabState extends State<MarketTab> {
   // Formatter untuk harga dan volume
   static final NumberFormat _priceFormatter = NumberFormat.currency(
     locale: 'id_ID',
-    symbol: 'Rp ',
+    symbol: 'Rp',
     decimalDigits: 0,
   );
   static final NumberFormat _volumeFormatter = NumberFormat.compactCurrency(
     locale: 'id_ID',
-    symbol: 'Rp ',
+    symbol: 'Rp',
     decimalDigits: 2,
   );
 
@@ -110,62 +112,59 @@ class _MarketTabState extends State<MarketTab> {
 
     return RefreshIndicator(
       onRefresh: () => marketData.fetchData(),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'search..',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Pencarian',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 26.0,
-              vertical: 1.0,
-            ),
-            child: Consumer<MarketProvider>(
-              builder: (context, marketProvider, _) => Row(
-                children: [
-                  _buildSortHeader(context, marketProvider, 'Name', 'name', 3,
-                      MainAxisAlignment.start),
-                  _buildSortHeader(context, marketProvider, '24H Chg',
-                      'price_change_24h', 3, MainAxisAlignment.center),
-                  _buildSortHeader(context, marketProvider, 'Price / Vol 24H',
-                      'current_price', 4, MainAxisAlignment.end),
-                ],
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
               ),
             ),
-          ),
-          Divider(height: 1, thickness: 1, indent: 16, endIndent: 16),
-          if (marketData.isLoading)
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Center(child: CircularProgressIndicator()),
+            // Consumer<MarketProvider>(
+            //   builder: (context, marketProvider, _) => Row(
+            //     children: [
+            //       _buildSortHeader(context, marketProvider, 'Name', 'name', 3,
+            //           MainAxisAlignment.start),
+            //       _buildSortHeader(context, marketProvider, '24H Chg',
+            //           'price_change_24h', 3, MainAxisAlignment.center),
+            //       _buildSortHeader(context, marketProvider, 'Price / Vol 24H',
+            //           'current_price', 4, MainAxisAlignment.end),
+            //     ],
+            //   ),
+            // ),
+            // Divider(height: 1, thickness: 1, indent: 16, endIndent: 16),
+            if (marketData.isLoading)
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredCoins.length,
+                itemBuilder: (context, index) {
+                  return MarketCoinListItem(
+                    coin: filteredCoins[index],
+                    priceFormatter: _priceFormatter,
+                    volumeFormatter: _volumeFormatter,
+                  );
+                },
+              ),
             ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredCoins.length,
-              itemBuilder: (context, index) {
-                return MarketCoinListItem(
-                  coin: filteredCoins[index],
-                  priceFormatter: _priceFormatter,
-                  volumeFormatter: _volumeFormatter,
-                );
-              },
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

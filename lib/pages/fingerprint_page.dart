@@ -10,7 +10,6 @@ class FingerprintPage extends StatefulWidget {
 }
 
 class _FingerprintPageState extends State<FingerprintPage> {
-  String _status = 'Perlu autentikasi sidik jari';
   bool _isAuthenticating = false;
   int _failCount = 0;
   final int _maxFail = 5;
@@ -33,7 +32,6 @@ class _FingerprintPageState extends State<FingerprintPage> {
   Future<void> _authenticate() async {
     setState(() {
       _isAuthenticating = true;
-      _status = 'Menunggu autentikasi...';
     });
     final LocalAuthentication auth = LocalAuthentication();
     try {
@@ -52,10 +50,8 @@ class _FingerprintPageState extends State<FingerprintPage> {
         setState(() {
           _failCount++;
           if (_failCount >= _maxFail) {
-            _status = 'Terlalu banyak percobaan gagal. Silakan login manual.';
             _isAuthenticating = false;
           } else {
-            _status = 'Autentikasi gagal ($_failCount/$_maxFail). Coba lagi.';
             _isAuthenticating = false;
           }
         });
@@ -66,7 +62,6 @@ class _FingerprintPageState extends State<FingerprintPage> {
       }
     } catch (e) {
       setState(() {
-        _status = 'Error: silahkan tunggu 30 detik';
         _isAuthenticating = false;
       });
     }

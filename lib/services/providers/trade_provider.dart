@@ -176,8 +176,8 @@ class TradeProvider extends ChangeNotifier {
   }
 
   void _onWalletChanged() {
-    final idr = walletProvider.getBalance('IDR');
-    final crypto = walletProvider.getBalance(_selectedCoinSymbol);
+    walletProvider.getBalance('IDR');
+    walletProvider.getBalance(_selectedCoinSymbol);
     notifyListeners();
   }
 }

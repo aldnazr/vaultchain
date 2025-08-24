@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 
 class CacheException implements Exception {
   final String message;

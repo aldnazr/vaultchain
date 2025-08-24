@@ -66,9 +66,7 @@ class DashboardTab extends StatelessWidget {
       builder: (context, marketData, _) {
         if (marketData.isLoading && marketData.allCoins.isEmpty) {
           return const Center(child: CircularProgressIndicator());
-        }
-
-        if (marketData.error != null && marketData.allCoins.isEmpty) {
+        } else if (marketData.error != null && marketData.allCoins.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

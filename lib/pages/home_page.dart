@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String title = 'Crypto App';
+    String title = 'Vault Chain';
     if (_selectedIndex == 0) {
       title = 'Dashboard';
     } else if (_selectedIndex == 1) {
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withAlpha(20),
               spreadRadius: 0,
               blurRadius: 10,
             ),
@@ -132,10 +132,10 @@ class _HomePageState extends State<HomePage> {
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: Color.fromARGB(255, 59, 160, 63),
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             unselectedItemColor: const Color.fromARGB(255, 184, 184, 184),
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
             type: BottomNavigationBarType.fixed,
             onTap: _onItemTapped,
             elevation: 0,

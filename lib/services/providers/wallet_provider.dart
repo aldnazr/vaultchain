@@ -6,9 +6,68 @@ import '../../model/coin_gecko.dart';
 class WalletProvider extends ChangeNotifier {
   late Box _walletBox;
   String _username = '';
-  Map<String, double> _balances = {};
+  final Map<String, double> _balances = {};
   bool _isLoading = false;
   String? _error;
+
+  // Constructor
+  WalletProvider() {
+    _initializeWallet();
+  }
+
+  // Initialize wallet
+  Future<void> _initializeWallet() async {
+    _setLoading(true);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      _username = prefs.getString('username') ?? 'Guest';
+      _walletBox = await Hive.openBox('wallet_$_username');
+      await loadAllBalances();
+    } catch (e) {
+      _error = 'Failed to initialize wallet: $e';
+      notifyListeners();
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+// Load all balances
+  Future<void> loadAllBalances() async {
+    if (!_walletBox.isOpen) return;
+
+    try {
+      // Load IDR balance
+      final idrAsset = _walletBox.get('IDR', defaultValue: {'amount': 0.0});
+      _balances['IDR'] = (idrAsset['amount'] as num?)?.toDouble() ?? 0.0;
+
+      // Load all crypto balances
+      for (var key in _walletBox.keys) {
+        if (key != 'IDR') {
+          final asset = _walletBox.get(key, defaultValue: {'amount': 0.0});
+          final amount = (asset['amount'] as num?)?.toDouble() ?? 0.0;
+          if (amount > 0) {
+            _balances[key.toString().toUpperCase()] = amount;
+          }
+        }
+      }
+
+      // Check if balances actually changed
+      Map<String, double> oldBalances = Map.from(_balances);
+      bool balancesChanged = false;
+      _balances.forEach((key, value) {
+        if (oldBalances[key] != value) {
+          balancesChanged = true;
+        }
+      });
+
+      if (balancesChanged) {
+        notifyListeners();
+      }
+    } catch (e) {
+      _error = 'Failed to load balances: $e';
+      notifyListeners();
+    }
+  }
 
   void resetWallet() {
     _username = '';
@@ -32,69 +91,9 @@ class WalletProvider extends ChangeNotifier {
     return balance;
   }
 
-  // Constructor
-  WalletProvider() {
-    _initializeWallet();
-  }
-
-  // Initialize wallet
-  Future<void> _initializeWallet() async {
-    _setLoading(true);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      _username = prefs.getString('username') ?? 'Guest';
-      _walletBox = await Hive.openBox('wallet_$_username');
-      await loadAllBalances();
-    } catch (e) {
-      _error = 'Failed to initialize wallet: $e';
-      notifyListeners();
-    } finally {
-      _setLoading(false);
-    }
-  }
-
   // Refresh wallet data
   Future<void> refresh() async {
     await loadAllBalances();
-  }
-
-  // Load all balances
-  Future<void> loadAllBalances() async {
-    if (!_walletBox.isOpen) return;
-
-    try {
-      Map<String, double> oldBalances = Map.from(_balances);
-
-      // Load IDR balance
-      final idrAsset = _walletBox.get('IDR', defaultValue: {'amount': 0.0});
-      _balances['IDR'] = (idrAsset['amount'] as num?)?.toDouble() ?? 0.0;
-
-      // Load all crypto balances
-      for (var key in _walletBox.keys) {
-        if (key != 'IDR') {
-          final asset = _walletBox.get(key, defaultValue: {'amount': 0.0});
-          final amount = (asset['amount'] as num?)?.toDouble() ?? 0.0;
-          if (amount > 0) {
-            _balances[key.toString().toUpperCase()] = amount;
-          }
-        }
-      }
-
-      // Check if balances actually changed
-      bool balancesChanged = false;
-      _balances.forEach((key, value) {
-        if (oldBalances[key] != value) {
-          balancesChanged = true;
-        }
-      });
-
-      if (balancesChanged) {
-        notifyListeners();
-      }
-    } catch (e) {
-      _error = 'Failed to load balances: $e';
-      notifyListeners();
-    }
   }
 
   // Deposit IDR
@@ -106,7 +105,7 @@ class WalletProvider extends ChangeNotifier {
     try {
       final currentBalance = getBalance('IDR');
       await updateBalance('IDR', currentBalance + amount);
-      final newBalance = getBalance('IDR');
+      getBalance('IDR');
       notifyListeners();
     } catch (e) {
       _error = 'Failed to deposit: $e';

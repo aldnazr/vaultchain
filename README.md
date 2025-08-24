@@ -47,9 +47,7 @@ assets/
 
 - `provider` - State management
 - `hive` & `hive_flutter` - Local storage
-- `flutter_local_notifications` - Local notifications
 - `local_auth` - Fingerprint/biometric
-- `firebase_messaging` - (optional) Push notification
 - `sensors_plus` - Device sensors (shake)
 - `geolocator`, `geocoding` - Location
 - `fl_chart` - Price charts

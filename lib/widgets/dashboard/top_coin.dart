@@ -13,33 +13,33 @@ class TopCoin extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
 
-    return Card(
-      color: const Color.fromARGB(255, 255, 255, 255),
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      shadowColor: const Color.fromARGB(255, 216, 216, 216),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CoinDetailPage(
-                      coinId: coin.id,
-                      coinName: coin.name,
-                      coinSymbol: coin.symbol,
-                    ),
-                  ),
-                );
-              },
-              child: Column(
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CoinDetailPage(
+              coinId: coin.id,
+              coinName: coin.name,
+              coinSymbol: coin.symbol,
+            ),
+          ),
+        );
+      },
+      child: Card(
+        color: const Color.fromARGB(255, 255, 255, 255),
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadowColor: const Color.fromARGB(255, 216, 216, 216),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -65,8 +65,8 @@ class TopCoin extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

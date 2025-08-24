@@ -3,8 +3,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/providers/notification_service.dart';
-
 class WithdrawPage extends StatefulWidget {
   final Box walletBox;
   const WithdrawPage({super.key, required this.walletBox});
@@ -17,8 +15,6 @@ class _WithdrawPageState extends State<WithdrawPage> {
   final _amountController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  double _currentIdrBalanceForMax = 0.0;
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +26,6 @@ class _WithdrawPageState extends State<WithdrawPage> {
       'IDR',
       defaultValue: {'amount': 0},
     ); // Ambil sebagai int jika sudah dibulatkan di Hive
-    _currentIdrBalanceForMax = (idrAsset['amount'] as num?)?.toDouble() ?? 0.0;
   }
 
   Future<void> _handleWithdraw() async {
@@ -85,9 +80,6 @@ class _WithdrawPageState extends State<WithdrawPage> {
         'note': '',
       });
 
-      await NotificationService().showWithdrawalSuccessNotification(
-        withdrawAmount,
-      );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(

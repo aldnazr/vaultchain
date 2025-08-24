@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import '../../model/coin_gecko.dart';
 import '../../services/api/coin_gecko_api.dart';
-import 'notification_service.dart';
 
 class MarketProvider extends ChangeNotifier {
   final CoinGeckoApi _api = CoinGeckoApi();
@@ -75,8 +74,6 @@ class MarketProvider extends ChangeNotifier {
     } finally {
       _isLoading = false;
       notifyListeners();
-
-      await NotificationService().showMarketUpdateNotification();
     }
   }
 

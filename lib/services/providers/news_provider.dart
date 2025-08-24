@@ -28,9 +28,7 @@ class NewsProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
     final box = await Hive.openBox(_newsBoxName);
-    final lastFetch = box.get(_newsLastFetchKey) as int?;
     final now = DateTime.now();
-    final shouldFetch = true;
     try {
       final response = await http.get(Uri.parse(_apiUrl));
       if (response.statusCode == 200) {
